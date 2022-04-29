@@ -15,11 +15,9 @@ class DomManager
         headerElem.appendChild(headerText);
         pageWrap.appendChild(headerElem);
     
-        // const sidebarElem = document.createElement('div');
         sidebarElem.classList.add('page-sidebar');
         pageWrap.appendChild(sidebarElem);
     
-        // const mainElem = document.createElement('div');
         mainElem.classList.add('page-main');
         pageWrap.appendChild(mainElem);
     
