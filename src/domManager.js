@@ -27,23 +27,29 @@ class DomManager
         pageWrap.appendChild(footerElem);
     }
 
-    renderProjects(project)
+    renderProjects(projects)
     {
-        const proj = document.createElement('button');
-        proj.textContent = project.name;
+        for (let i = 0; i < projects.length; i++)
+        {
+            const proj = document.createElement('button');
+            proj.textContent = projects[i].name;
 
-        sidebarElem.appendChild(proj);
+            sidebarElem.appendChild(proj);
+        }
     }
 
-    renderTodos(todo)
+    renderTodos(todos)
     {
-        const testTodo = document.createElement('p');
-        testTodo.textContent = todo.title;
-        const something = document.createElement('p');
-        something.textContent = todo.desc;
+        for (let i = 0; i < todos.length; i++)
+        {
+            const testTodo = document.createElement('p');
+            testTodo.textContent = todos[i].title;
+            const something = document.createElement('p');
+            something.textContent = todos[i].desc;
 
-        mainElem.appendChild(testTodo);
-        mainElem.appendChild(something);
+            mainElem.appendChild(testTodo);
+            mainElem.appendChild(something);
+        }
     }
 }
 

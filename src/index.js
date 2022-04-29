@@ -10,7 +10,9 @@ domManager.initializeUI();
 // Add initial default project with default todo
 const userProjects = new UserProjects();
 userProjects.addProject(new Project());
-userProjects.projects[0].addTodo(new Todo("abbabba", "Something"));
+userProjects.projects[0].addTodo(new Todo());
+userProjects.projects[0].addTodo(new Todo("Other todo", "Other description"));
+userProjects.addProject(new Project("Other Project"));
 
-domManager.renderProjects(userProjects.projects[0]);
-domManager.renderTodos(userProjects.projects[0].todos[0]);
+domManager.renderProjects(userProjects.projects);
+domManager.renderTodos(userProjects.projects[0].todos);
