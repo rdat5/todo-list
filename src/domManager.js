@@ -34,6 +34,17 @@ class DomManager
 
         sidebarElem.appendChild(proj);
     }
+
+    renderTodos(todo)
+    {
+        const testTodo = document.createElement('p');
+        testTodo.textContent = todo.title;
+        const something = document.createElement('p');
+        something.textContent = todo.desc;
+
+        mainElem.appendChild(testTodo);
+        mainElem.appendChild(something);
+    }
 }
 
 export { DomManager };

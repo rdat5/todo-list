@@ -11,3 +11,6 @@ domManager.initializeUI();
 const userProjects = new UserProjects();
 userProjects.addProject(new Project());
 userProjects.projects[0].addTodo(new Todo("abbabba", "Something"));
+
+domManager.renderProjects(userProjects.projects[0]);
+domManager.renderTodos(userProjects.projects[0].todos[0]);
