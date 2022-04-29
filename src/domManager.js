@@ -26,6 +26,14 @@ class DomManager
         footerElem.textContent = "Ray Allen Datuin 2022";
         pageWrap.appendChild(footerElem);
     }
+
+    renderProjects(project)
+    {
+        const proj = document.createElement('button');
+        proj.textContent = project.name;
+
+        sidebarElem.appendChild(proj);
+    }
 }
 
 export { DomManager };
