@@ -50,8 +50,8 @@ body
 .page-main .card-container
 {
     background-color: white;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr;
 }
 .page-main .card-container p
 {
