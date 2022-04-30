@@ -71,13 +71,6 @@ class DomManager
     {
         for (let i = 0; i < todos.length; i++)
         {
-            // const testTodo = document.createElement('p');
-            // testTodo.textContent = todos[i].title;
-            // const something = document.createElement('p');
-            // something.textContent = todos[i].desc;
-
-            // mainElem.appendChild(testTodo);
-            // mainElem.appendChild(something);
             mainElem.appendChild(this.generateTodoCard(todos[i]));
         }
     }
