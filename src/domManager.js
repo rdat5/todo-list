@@ -65,6 +65,9 @@ class DomManager
 
             sidebarElem.appendChild(proj);
         }
+        const addNew = document.createElement('button');
+        addNew.textContent = "Add New Project";
+        sidebarElem.appendChild(addNew);
     }
 
     renderTodos(todos)
