@@ -53,6 +53,11 @@ class DomManager
         cardPriority.textContent = todo.priority;
         cardContainer.appendChild(cardPriority);
 
+        // Todo edit button
+        const cardEditBtn = document.createElement('button');
+        cardEditBtn.textContent = "[E]";
+        cardContainer.appendChild(cardEditBtn);
+
         return cardContainer;
     }
 

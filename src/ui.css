@@ -55,7 +55,7 @@ body
 {
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 0.5fr;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr min-content;
 }
 .page-main .card-container p
 {
