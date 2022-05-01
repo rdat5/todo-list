@@ -29,9 +29,18 @@ class DomManager
 
     generateTodoCard(todo)
     {
+        
         // Todo container
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
+
+        // Todo checked
+        const checkBoxContainer = document.createElement('div');
+        checkBoxContainer.classList.add("checkbox-container");
+        const cardCheck = document.createElement('input');
+        cardCheck.type = "checkbox";
+        checkBoxContainer.appendChild(cardCheck);
+        cardContainer.appendChild(checkBoxContainer);
         
         // Todo title
         const cardTitle = document.createElement('p');
