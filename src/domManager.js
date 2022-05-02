@@ -35,18 +35,10 @@ class DomManager
         cardContainer.classList.add('card-container');
 
         // Todo checked
-        const checkBoxContainer = document.createElement('div');
-        checkBoxContainer.classList.add("checkbox-container");
-        const cardCheck = document.createElement('input');
-        cardCheck.type = "checkbox";
-        cardCheck.setAttribute('id', 'todoChecked' + id);
-        const checkLabel = document.createElement('label');
-        checkLabel.textContent = "Done?";
-        checkLabel.style.fontSize = "0.5rem";
-        checkLabel.setAttribute('for', cardCheck.getAttribute('id'));
-        checkBoxContainer.appendChild(cardCheck);
-        checkBoxContainer.appendChild(checkLabel);
-        cardContainer.appendChild(checkBoxContainer);
+        const doneButton = document.createElement('button');
+        doneButton.textContent = "Done";
+        doneButton.style.fontSize = "0.6rem";
+        cardContainer.appendChild(doneButton);
         
         // Todo title
         const cardTitle = document.createElement('p');
