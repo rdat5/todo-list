@@ -73,6 +73,11 @@ class DomManager
         cardEditBtn.textContent = "[E]";
         cardContainer.appendChild(cardEditBtn);
 
+        // Todo delete button
+        const cardDelBtn = document.createElement('button');
+        cardDelBtn.textContent = "[X]";
+        cardContainer.appendChild(cardDelBtn);
+
         return cardContainer;
     }
 
