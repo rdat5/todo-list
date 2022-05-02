@@ -36,8 +36,7 @@ class DomManager
 
         // Todo checked
         const doneButton = document.createElement('button');
-        doneButton.textContent = "Done";
-        doneButton.style.fontSize = "0.6rem";
+        doneButton.textContent = "☐";
         cardContainer.appendChild(doneButton);
         
         // Todo title
