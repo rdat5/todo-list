@@ -57,6 +57,11 @@ body
     display: grid;
     grid-template-columns: min-content 1fr 2fr 1fr 0.5fr min-content;
 }
+.page-main .card-container .checkbox-container
+{
+    display: flex;
+    align-items: center;
+}
 .page-main .card-container .checkbox-container input[type=checkbox]
 {
     transform: scale(1.5);

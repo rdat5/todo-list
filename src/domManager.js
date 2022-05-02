@@ -27,7 +27,7 @@ class DomManager
         pageWrap.appendChild(footerElem);
     }
 
-    generateTodoCard(todo)
+    generateTodoCard(todo, id)
     {
         
         // Todo container
@@ -39,7 +39,13 @@ class DomManager
         checkBoxContainer.classList.add("checkbox-container");
         const cardCheck = document.createElement('input');
         cardCheck.type = "checkbox";
+        cardCheck.setAttribute('id', 'todoChecked' + id);
+        const checkLabel = document.createElement('label');
+        checkLabel.textContent = "Done?";
+        checkLabel.style.fontSize = "0.5rem";
+        checkLabel.setAttribute('for', cardCheck.getAttribute('id'));
         checkBoxContainer.appendChild(cardCheck);
+        checkBoxContainer.appendChild(checkLabel);
         cardContainer.appendChild(checkBoxContainer);
         
         // Todo title
@@ -88,7 +94,7 @@ class DomManager
     {
         for (let i = 0; i < todos.length; i++)
         {
-            mainElem.appendChild(this.generateTodoCard(todos[i]));
+            mainElem.appendChild(this.generateTodoCard(todos[i], i));
         }
     }
 }
