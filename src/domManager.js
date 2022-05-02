@@ -96,6 +96,9 @@ class DomManager
         {
             mainElem.appendChild(this.generateTodoCard(todos[i], i));
         }
+        const addNewTodoBtn = document.createElement('button');
+        addNewTodoBtn.textContent = "[+] Add New Todo"
+        mainElem.appendChild(addNewTodoBtn);
     }
 }
 
