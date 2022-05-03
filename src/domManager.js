@@ -103,6 +103,18 @@ class DomManager
 
     renderTodos(todos)
     {
+        // Header
+        const todoHeader = this.generateElement('div', 'todo-header', null);
+        todoHeader.appendChild(this.generateElement('p', null, 'Done?'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Task Title'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Description'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Due Date'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Priority'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Edit'));
+        todoHeader.appendChild(this.generateElement('p', null, 'Delete'));
+        mainElem.appendChild(todoHeader);
+
+        // Todos
         for (let i = 0; i < todos.length; i++)
         {
             mainElem.appendChild(this.generateTodoCard(todos[i], i));
