@@ -27,6 +27,21 @@ class DomManager
         pageWrap.appendChild(footerElem);
     }
 
+    generateElement(elemType, elemClass, elemText)
+    {
+        const element = document.createElement(elemType);
+        if (elemClass)
+        {
+            element.classList.add(elemClass);
+        }
+        if (elemText)
+        {
+            element.textContent = elemText;
+        }
+
+        return element;
+    }
+
     generateTodoCard(todo, id)
     {
         
