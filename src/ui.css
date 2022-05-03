@@ -61,17 +61,6 @@ body
 {
     font-size: 1rem;
 }
-.page-main .card-container .checkbox-container
-{
-    display: flex;
-    align-items: center;
-}
-.page-main .card-container .checkbox-container input[type=checkbox]
-{
-    transform: scale(1.5);
-    padding: 0;
-    margin: 0.5rem;
-}
 .page-main .card-container p
 {
 
