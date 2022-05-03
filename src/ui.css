@@ -75,6 +75,12 @@ body
     margin: 0;
     padding: 0;
 }
+.page-main .card-container button
+{
+    /* background-color: red; */
+    width: min-content;
+    justify-self: center;
+}
 .page-main .todo-header p
 {
     font-size: 0.75rem;
