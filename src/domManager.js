@@ -48,10 +48,25 @@ class DomManager
         // Todo container
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
+        if (todo.isDone)
+        {
+            cardContainer.style.backgroundColor = "rgba(0, 0, 0, 0.33)";
+        }
+        else
+        {
+            cardContainer.style.backgroundColor = "none";
+        }
 
         // Todo checked
         const doneButton = document.createElement('button');
-        doneButton.textContent = "☐";
+        if (todo.isDone)
+        {
+            doneButton.textContent = "☑";
+        }
+        else
+        {
+            doneButton.textContent = "☐";
+        }
         cardContainer.appendChild(doneButton);
         
         // Todo title
