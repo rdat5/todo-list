@@ -59,13 +59,14 @@ class DomManager
 
         // Todo checked
         const doneButton = document.createElement('button');
+        doneButton.style.width = "100%";
         if (todo.isDone)
         {
-            doneButton.textContent = "☑";
+            doneButton.textContent = "☑ Complete";
         }
         else
         {
-            doneButton.textContent = "☐";
+            doneButton.textContent = "☐ Incomplete";
         }
         cardContainer.appendChild(doneButton);
         
@@ -75,9 +76,9 @@ class DomManager
         cardContainer.appendChild(cardTitle);
 
         // Todo description
-        const cardDesc = document.createElement('p');
-        cardDesc.textContent = todo.desc;
-        cardContainer.appendChild(cardDesc);
+        // const cardDesc = document.createElement('p');
+        // cardDesc.textContent = todo.desc;
+        // cardContainer.appendChild(cardDesc);
 
         // Todo due date
         const cardDue = document.createElement('p');
@@ -119,15 +120,15 @@ class DomManager
     renderTodos(todos)
     {
         // Header
-        const todoHeader = this.generateElement('div', 'todo-header', null);
-        todoHeader.appendChild(this.generateElement('p', null, 'Done?'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Task Title'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Description'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Due Date'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Priority'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Edit'));
-        todoHeader.appendChild(this.generateElement('p', null, 'Delete'));
-        mainElem.appendChild(todoHeader);
+        // const todoHeader = this.generateElement('div', 'todo-header', null);
+        // todoHeader.appendChild(this.generateElement('p', null, 'Done?'));
+        // todoHeader.appendChild(this.generateElement('p', null, 'Task Title'));
+        // // todoHeader.appendChild(this.generateElement('p', null, 'Description'));
+        // todoHeader.appendChild(this.generateElement('p', null, 'Due Date'));
+        // todoHeader.appendChild(this.generateElement('p', null, 'Priority'));
+        // todoHeader.appendChild(this.generateElement('p', null, 'Edit'));
+        // todoHeader.appendChild(this.generateElement('p', null, 'Delete'));
+        // mainElem.appendChild(todoHeader);
 
         // Todos
         for (let i = 0; i < todos.length; i++)
