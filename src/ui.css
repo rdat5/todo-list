@@ -54,10 +54,15 @@ body
 .page-main .todo-header,
 .page-main .card-container
 {
-    /* background-color: white; */
     background-color: none;
     display: grid;
     grid-template-columns: 0.5fr 4fr 1fr 1fr minmax(min-content, 0.1fr) minmax(min-content, 0.1fr);
+}
+.page-main .new-todo-form
+{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .page-main .card-container > *
 {
@@ -71,7 +76,6 @@ body
 }
 .page-main .card-container button
 {
-    /* background-color: red; */
     width: min-content;
     justify-self: center;
 

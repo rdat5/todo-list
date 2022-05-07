@@ -75,11 +75,6 @@ class DomManager
         cardTitle.textContent = todo.title;
         cardContainer.appendChild(cardTitle);
 
-        // Todo description
-        // const cardDesc = document.createElement('p');
-        // cardDesc.textContent = todo.desc;
-        // cardContainer.appendChild(cardDesc);
-
         // Todo due date
         const cardDue = document.createElement('p');
         cardDue.textContent = todo.dueDate;
@@ -103,6 +98,89 @@ class DomManager
         return cardContainer;
     }
 
+    generateNewTodoForm()
+    {
+        // container
+        const newTodoForm = document.createElement('div');
+        newTodoForm.classList.add("new-todo-form");
+        
+        // todo title
+        const titleInput = document.createElement('input');
+        titleInput.setAttribute('id', 'title-input');
+        const titleInputLabel = document.createElement('label');
+        titleInputLabel.htmlFor = 'title-input';
+        titleInputLabel.textContent = "Title";
+        newTodoForm.appendChild(titleInputLabel);
+        newTodoForm.appendChild(titleInput);
+
+        // todo description
+        const descInput = document.createElement('input');
+        descInput.setAttribute('id', 'desc-input');
+        const descInputLabel = document.createElement('label');
+        descInputLabel.htmlFor = 'desc-input';
+        descInputLabel.textContent = "Description";
+        newTodoForm.appendChild(descInputLabel);
+        newTodoForm.appendChild(descInput);
+
+        // todo due date
+        const dateInputLabel = this.generateElement('label', null, "Date Due");
+        dateInputLabel.htmlFor = 'date-input';
+        newTodoForm.appendChild(dateInputLabel);
+
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.setAttribute('id', 'date-input');
+        newTodoForm.appendChild(dateInput);
+
+        // Todo priority
+        const priorities = ['Urgent', 'High', 'Normal', 'Low'];
+
+        const datePriorityLabel = this.generateElement('label', null, 'Priority');
+        datePriorityLabel.htmlFor = 'priority-input';
+        newTodoForm.appendChild(datePriorityLabel);
+
+        const priorityInput = document.createElement('select');
+        priorityInput.setAttribute('id', 'priority-input');
+        for (let i = 0; i < priorities.length; i++)
+        {
+            var option = document.createElement('option');
+            option.value = priorities[i];
+            option.text = priorities[i];
+            priorityInput.appendChild(option);
+        }
+        newTodoForm.appendChild(priorityInput);
+
+        const saveTodoBtn = this.generateElement('button', null, 'Save Todo');
+        saveTodoBtn.addEventListener("click", () => {
+            mainElem.removeChild(newTodoForm);    
+            mainElem.appendChild(this.generateNewTodoButton());
+        })
+        newTodoForm.appendChild(saveTodoBtn);
+
+        const cancelTodoBtn = this.generateElement('button', null, 'Cancel');
+        newTodoForm.appendChild(cancelTodoBtn);
+        return newTodoForm;
+    }
+
+    generateNewTodoButton()
+    {
+        const addNewTodoBtn = document.createElement('button');
+        addNewTodoBtn.textContent = "[+] Add New Todo";
+        addNewTodoBtn.addEventListener("click", () =>
+        {
+            mainElem.removeChild(addNewTodoBtn);
+            this.onNewTodoClicked();
+        })
+
+        return addNewTodoBtn;
+    }
+
+    onNewTodoClicked()
+    {
+        console.log("On todo clicked");
+        mainElem.appendChild(this.generateNewTodoForm());
+    }
+
     renderProjects(projects)
     {
         for (let i = 0; i < projects.length; i++)
@@ -119,25 +197,13 @@ class DomManager
 
     renderTodos(todos)
     {
-        // Header
-        // const todoHeader = this.generateElement('div', 'todo-header', null);
-        // todoHeader.appendChild(this.generateElement('p', null, 'Done?'));
-        // todoHeader.appendChild(this.generateElement('p', null, 'Task Title'));
-        // // todoHeader.appendChild(this.generateElement('p', null, 'Description'));
-        // todoHeader.appendChild(this.generateElement('p', null, 'Due Date'));
-        // todoHeader.appendChild(this.generateElement('p', null, 'Priority'));
-        // todoHeader.appendChild(this.generateElement('p', null, 'Edit'));
-        // todoHeader.appendChild(this.generateElement('p', null, 'Delete'));
-        // mainElem.appendChild(todoHeader);
-
         // Todos
         for (let i = 0; i < todos.length; i++)
         {
             mainElem.appendChild(this.generateTodoCard(todos[i], i));
         }
-        const addNewTodoBtn = document.createElement('button');
-        addNewTodoBtn.textContent = "[+] Add New Todo"
-        mainElem.appendChild(addNewTodoBtn);
+
+        mainElem.appendChild(this.generateNewTodoButton());
     }
 }
 
