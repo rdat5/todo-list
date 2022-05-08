@@ -44,6 +44,11 @@ body
     flex-direction: column;
     gap: 0.5rem;
 }
+.page-sidebar .project-card
+{
+    display: grid;
+    grid-template-columns: 1fr min-content;
+}
 .page-main
 {
     background-color: #dcedc8;

@@ -186,6 +186,17 @@ class DomManager
         return addNewTodoBtn;
     }
 
+    generateProjectCard(givenProject)
+    {
+        const projectContainer = this.generateElement('div', 'project-card', null);
+        const projBtn = this.generateElement('button', null, givenProject.name);
+        projectContainer.appendChild(projBtn);
+        const projDelBtn = this.generateElement('button', null, '⌫');
+        projectContainer.appendChild(projDelBtn);
+
+        return projectContainer;
+    }
+
     onNewTodoClicked()
     {
         console.log("On todo clicked");
@@ -197,10 +208,10 @@ class DomManager
         const projects = this.userProj.projects;
         for (let i = 0; i < projects.length; i++)
         {
-            const proj = document.createElement('button');
-            proj.textContent = projects[i].name;
+            // const proj = document.createElement('button');
+            // proj.textContent = projects[i].name;
 
-            sidebarElem.appendChild(proj);
+            sidebarElem.appendChild(this.generateProjectCard(projects[i]));
         }
         const addNew = document.createElement('button');
         addNew.textContent = "Add New Project";
