@@ -6,6 +6,13 @@ const mainElem = document.createElement('div');
 
 class DomManager
 {
+    currentProjectIndex;
+
+    constructor(userProj)
+    {
+        this.userProj = userProj;
+    }
+
      initializeUI()
     {
         const headerElem = document.createElement('div');
@@ -185,8 +192,9 @@ class DomManager
         mainElem.appendChild(this.generateNewTodoForm());
     }
 
-    renderProjects(projects)
+    renderProjects()
     {
+        const projects = this.userProj.projects;
         for (let i = 0; i < projects.length; i++)
         {
             const proj = document.createElement('button');
@@ -199,8 +207,9 @@ class DomManager
         sidebarElem.appendChild(addNew);
     }
 
-    renderTodos(todos)
+    renderTodos()
     {
+        const todos = this.userProj.projects[this.currentProjectIndex].todos;
         // Todos
         for (let i = 0; i < todos.length; i++)
         {
