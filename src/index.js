@@ -27,5 +27,6 @@ domManager.initializeUI();
 // domManager.renderProjects(userProjects.projects);
 // domManager.renderTodos(userProjects.projects[0].todos);
 domManager.currentProjectIndex = 0;
-domManager.renderProjects();
-domManager.renderTodos();
+// domManager.renderProjects();
+// domManager.renderTodos();
+domManager.renderPage();

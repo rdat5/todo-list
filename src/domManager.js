@@ -218,6 +218,12 @@ class DomManager
 
         mainElem.appendChild(this.generateNewTodoButton());
     }
+
+    renderPage()
+    {
+        this.renderProjects();
+        this.renderTodos();
+    }
 }
 
 export { DomManager };
