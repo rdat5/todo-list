@@ -158,6 +158,10 @@ class DomManager
         newTodoForm.appendChild(saveTodoBtn);
 
         const cancelTodoBtn = this.generateElement('button', null, 'Cancel');
+        cancelTodoBtn.addEventListener("click", () => {
+            mainElem.removeChild(newTodoForm);    
+            mainElem.appendChild(this.generateNewTodoButton());
+        })
         newTodoForm.appendChild(cancelTodoBtn);
         return newTodoForm;
     }
