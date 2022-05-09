@@ -49,6 +49,14 @@ class DomManager
         return element;
     }
 
+    removeAllChildren(parent)
+    {
+        while (parent.firstChild)
+        {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
     generateTodoCard(todo, id)
     {
         
@@ -75,6 +83,10 @@ class DomManager
         {
             doneButton.textContent = "☐ Incomplete";
         }
+        doneButton.addEventListener("click", () =>{
+            this.userProj.projects[this.currentProjectIndex].todos[id].toggleIsDone();
+            this.renderTodos();
+        });
         cardContainer.appendChild(doneButton);
         
         // Todo title
@@ -220,6 +232,9 @@ class DomManager
 
     renderTodos()
     {
+        // Clear main element first
+        this.removeAllChildren(mainElem);
+
         const todos = this.userProj.projects[this.currentProjectIndex].todos;
         // Todos
         for (let i = 0; i < todos.length; i++)
