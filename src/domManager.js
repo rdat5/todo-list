@@ -116,10 +116,10 @@ class DomManager
         cardPriority.textContent = todo.priority;
         cardContainer.appendChild(cardPriority);
 
-        // Todo edit button
-        const cardEditBtn = document.createElement('button');
-        cardEditBtn.textContent = "🖊";
-        cardContainer.appendChild(cardEditBtn);
+        // // Todo edit button
+        // const cardEditBtn = document.createElement('button');
+        // cardEditBtn.textContent = "🖊";
+        // cardContainer.appendChild(cardEditBtn);
 
         // Todo delete button
         const cardDelBtn = document.createElement('button');
