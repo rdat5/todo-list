@@ -71,28 +71,40 @@ class DomManager
         {
             cardContainer.style.backgroundColor = "none";
         }
+        cardContainer.addEventListener("click", () => {
+            console.log("clicked");
+            cardDesc.style.display = "block";
+        })
 
         // Todo checked
         const doneButton = document.createElement('button');
         doneButton.style.width = "100%";
         if (todo.isDone)
         {
-            doneButton.textContent = "☑ Complete";
+            doneButton.textContent = "☑";
         }
         else
         {
-            doneButton.textContent = "☐ Incomplete";
+            doneButton.textContent = "☐";
         }
-        doneButton.addEventListener("click", () =>{
+        doneButton.addEventListener("click", (event) =>{
+            event.stopPropagation();
             this.userProj.projects[this.currentProjectIndex].todos[id].toggleIsDone();
             this.renderTodos();
         });
         cardContainer.appendChild(doneButton);
         
-        // Todo title
+        // Todo title/Description
+        const titleDescContainer = document.createElement('div');
         const cardTitle = document.createElement('p');
         cardTitle.textContent = todo.title;
-        cardContainer.appendChild(cardTitle);
+        titleDescContainer.appendChild(cardTitle);
+        const cardDesc = document.createElement('p');
+        cardDesc.textContent = todo.desc;
+        cardDesc.classList.add("todo-description");
+        cardDesc.style.display = "none";
+        titleDescContainer.appendChild(cardDesc);
+        cardContainer.appendChild(titleDescContainer);
 
         // Todo due date
         const cardDue = document.createElement('p');
