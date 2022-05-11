@@ -1,4 +1,6 @@
 import './ui.css';
+import { format, parseISO } from 'date-fns';
+import { Todo } from './todo';
 
 const pageWrap = document.querySelector('.page-wrap');
 const sidebarElem = document.createElement('div');
@@ -188,9 +190,18 @@ class DomManager
         newTodoForm.appendChild(priorityInput);
 
         const saveTodoBtn = this.generateElement('button', null, 'Save Todo');
-        saveTodoBtn.addEventListener("click", () => {
+        saveTodoBtn.addEventListener("click", (event) => {
             mainElem.removeChild(newTodoForm);    
             mainElem.appendChild(this.generateNewTodoButton());
+            
+            let formTitle = titleInput.value;
+            let formDesc = descInput.value;
+            let formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy');
+            let formPriority = priorityInput.options[priorityInput.selectedIndex].text;
+
+            this.userProj.projects[this.currentProjectIndex].addTodo(new Todo(formTitle, formDesc, formDate, formPriority));
+
+            this.renderTodos();
         })
         newTodoForm.appendChild(saveTodoBtn);
 
@@ -198,6 +209,8 @@ class DomManager
         cancelTodoBtn.addEventListener("click", () => {
             mainElem.removeChild(newTodoForm);    
             mainElem.appendChild(this.generateNewTodoButton());
+            console.log("Canceling...");
+            this.renderTodos();
         })
         newTodoForm.appendChild(cancelTodoBtn);
         return newTodoForm;
