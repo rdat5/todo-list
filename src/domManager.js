@@ -124,6 +124,12 @@ class DomManager
         // Todo delete button
         const cardDelBtn = document.createElement('button');
         cardDelBtn.textContent = "⌫";
+        cardDelBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            console.log("Delete!");
+            this.userProj.projects[this.currentProjectIndex].deleteTodo(id);
+            this.renderTodos();
+        })
         cardContainer.appendChild(cardDelBtn);
 
         return cardContainer;

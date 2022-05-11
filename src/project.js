@@ -12,6 +12,11 @@ class Project
     {
         this.todos.push(todo);
     }
+
+    deleteTodo(index)
+    {
+        this.todos.splice(index, 1);
+    }
 }
 
 export { Project };
