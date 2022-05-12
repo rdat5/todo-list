@@ -196,7 +196,15 @@ class DomManager
             
             let formTitle = titleInput.value;
             let formDesc = descInput.value;
-            let formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy');
+            let formDate;
+            if (dateInput.value)
+            {
+                formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy')
+            }
+            else
+            {
+                formDate = format(Date.now(), 'MM/dd/yyyy');
+            }
             let formPriority = priorityInput.options[priorityInput.selectedIndex].text;
 
             this.userProj.projects[this.currentProjectIndex].addTodo(new Todo(formTitle, formDesc, formDate, formPriority));
