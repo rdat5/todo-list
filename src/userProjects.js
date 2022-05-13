@@ -8,6 +8,11 @@ class UserProjects
     {
         this.projects.push(project);
     }
+
+    deleteProject(index)
+    {
+        this.projects.splice(index, 1);
+    }
 }
 
 export { UserProjects };

@@ -238,12 +238,17 @@ class DomManager
         return addNewTodoBtn;
     }
 
-    generateProjectCard(givenProject)
+    generateProjectCard(givenProject, id)
     {
         const projectContainer = this.generateElement('div', 'project-card', null);
         const projBtn = this.generateElement('button', null, givenProject.name);
         projectContainer.appendChild(projBtn);
         const projDelBtn = this.generateElement('button', null, '⌫');
+        projDelBtn.addEventListener("click", () => {
+            console.log("deleting project!" + id);
+            this.userProj.deleteProject(id);
+            this.renderProjects();
+        })
         projectContainer.appendChild(projDelBtn);
 
         return projectContainer;
@@ -306,7 +311,7 @@ class DomManager
             // const proj = document.createElement('button');
             // proj.textContent = projects[i].name;
 
-            sidebarElem.appendChild(this.generateProjectCard(projects[i]));
+            sidebarElem.appendChild(this.generateProjectCard(projects[i], i));
         }
         const addNew = document.createElement('button');
         addNew.textContent = "Add New Project";
