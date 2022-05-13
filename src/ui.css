@@ -49,6 +49,14 @@ body
     display: grid;
     grid-template-columns: 1fr min-content;
 }
+
+.page-sidebar .new-project-form
+{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+}
+
 .page-main
 {
     background-color: #dcedc8;

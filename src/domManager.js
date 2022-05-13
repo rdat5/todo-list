@@ -254,8 +254,33 @@ class DomManager
         mainElem.appendChild(this.generateNewTodoForm());
     }
 
+    generateNewProjectForm()
+    {
+        const newProjectForm = document.createElement('div');
+        newProjectForm.classList.add("new-project-form");
+        
+        const newProjName = document.createElement('input');
+        newProjName.placeholder = "New Project Name";
+        newProjectForm.appendChild(newProjName);
+
+        const saveCancelContainer = document.createElement('div');
+        saveCancelContainer.style.display = "grid";
+        saveCancelContainer.style.gridTemplateColumns = "1fr 1fr";
+
+        const saveNewProj = this.generateElement('button', null, 'Save');
+        saveCancelContainer.appendChild(saveNewProj);
+
+        const cancelNewProj = this.generateElement('button', null, 'Cancel');
+        saveCancelContainer.appendChild(cancelNewProj);
+
+        newProjectForm.appendChild(saveCancelContainer);
+
+        return newProjectForm;
+    }
+
     renderProjects()
     {
+        this.removeAllChildren(sidebarElem);
         const projects = this.userProj.projects;
         for (let i = 0; i < projects.length; i++)
         {
@@ -266,6 +291,11 @@ class DomManager
         }
         const addNew = document.createElement('button');
         addNew.textContent = "Add New Project";
+        addNew.addEventListener("click", () => {
+            console.log("Adding new project!");
+            sidebarElem.removeChild(addNew);
+            sidebarElem.appendChild(this.generateNewProjectForm());
+        })
         sidebarElem.appendChild(addNew);
     }
 
