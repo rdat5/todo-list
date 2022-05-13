@@ -1,6 +1,7 @@
 import './ui.css';
 import { format, parseISO } from 'date-fns';
 import { Todo } from './todo';
+import { Project } from './project';
 
 const pageWrap = document.querySelector('.page-wrap');
 const sidebarElem = document.createElement('div');
@@ -268,9 +269,27 @@ class DomManager
         saveCancelContainer.style.gridTemplateColumns = "1fr 1fr";
 
         const saveNewProj = this.generateElement('button', null, 'Save');
+        saveNewProj.addEventListener("click", () => {
+            let newName;
+            if (newProjName.value)
+            {
+                newName = newProjName.value;
+            }
+            else
+            {
+                newName = "New Project Name";
+            }
+
+            this.userProj.addProject(new Project(newName));
+            this.renderProjects();
+        })
         saveCancelContainer.appendChild(saveNewProj);
 
         const cancelNewProj = this.generateElement('button', null, 'Cancel');
+        cancelNewProj.addEventListener("click", () => {
+            this.renderProjects();
+            console.log("canceling project...");
+        })
         saveCancelContainer.appendChild(cancelNewProj);
 
         newProjectForm.appendChild(saveCancelContainer);
