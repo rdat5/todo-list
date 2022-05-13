@@ -119,11 +119,6 @@ class DomManager
         cardPriority.textContent = todo.priority;
         cardContainer.appendChild(cardPriority);
 
-        // // Todo edit button
-        // const cardEditBtn = document.createElement('button');
-        // cardEditBtn.textContent = "🖊";
-        // cardContainer.appendChild(cardEditBtn);
-
         // Todo delete button
         const cardDelBtn = document.createElement('button');
         cardDelBtn.textContent = "⌫";
@@ -313,9 +308,6 @@ class DomManager
         const projects = this.userProj.projects;
         for (let i = 0; i < projects.length; i++)
         {
-            // const proj = document.createElement('button');
-            // proj.textContent = projects[i].name;
-
             sidebarElem.appendChild(this.generateProjectCard(projects[i], i));
         }
         const addNew = document.createElement('button');
