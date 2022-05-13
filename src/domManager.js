@@ -242,6 +242,11 @@ class DomManager
     {
         const projectContainer = this.generateElement('div', 'project-card', null);
         const projBtn = this.generateElement('button', null, givenProject.name);
+        projBtn.addEventListener("click", () => {
+            console.log("Selecting project: " + id);
+            this.currentProjectIndex = id;
+            this.renderTodos();
+        })
         projectContainer.appendChild(projBtn);
         const projDelBtn = this.generateElement('button', null, '⌫');
         projDelBtn.addEventListener("click", () => {
