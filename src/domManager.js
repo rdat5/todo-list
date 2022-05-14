@@ -106,6 +106,7 @@ class DomManager
         cardDesc.textContent = todo.desc;
         cardDesc.classList.add("todo-description");
         cardDesc.style.display = "none";
+        cardDesc.style.fontSize = "0.8rem";
         titleDescContainer.appendChild(cardDesc);
         cardContainer.appendChild(titleDescContainer);
 
