@@ -247,7 +247,7 @@ class DomManager
         projDelBtn.addEventListener("click", () => {
             console.log("deleting project!" + id);
             this.userProj.deleteProject(id);
-            this.renderProjects();
+            this.renderPage();
         })
         projectContainer.appendChild(projDelBtn);
 
@@ -321,15 +321,18 @@ class DomManager
     }
 
     renderTodos()
-    {
+    {   
         // Clear main element first
         this.removeAllChildren(mainElem);
 
-        const todos = this.userProj.projects[this.currentProjectIndex].todos;
-        // Todos
-        for (let i = 0; i < todos.length; i++)
+        if (this.userProj.projects.length > 0)
         {
-            mainElem.appendChild(this.generateTodoCard(todos[i], i));
+            const todos = this.userProj.projects[this.currentProjectIndex].todos;
+            // Todos
+            for (let i = 0; i < todos.length; i++)
+            {
+                mainElem.appendChild(this.generateTodoCard(todos[i], i));
+            }
         }
 
         mainElem.appendChild(this.generateNewTodoButton());
