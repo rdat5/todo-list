@@ -76,7 +76,9 @@ class DomManager
         }
         cardContainer.addEventListener("click", () => {
             console.log("clicked");
-            cardDesc.style.display = "block";
+            // cardDesc.style.display = "block";
+            todo.isRevealed = !todo.isRevealed;
+            this.renderTodos();
         })
 
         // Todo checked
@@ -105,7 +107,14 @@ class DomManager
         const cardDesc = document.createElement('p');
         cardDesc.textContent = todo.desc;
         cardDesc.classList.add("todo-description");
-        cardDesc.style.display = "none";
+        if (todo.isRevealed)
+        {
+            cardDesc.style.display = "block";
+        }
+        else
+        {
+            cardDesc.style.display = "none";
+        }
         cardDesc.style.fontSize = "0.8rem";
         titleDescContainer.appendChild(cardDesc);
         cardContainer.appendChild(titleDescContainer);

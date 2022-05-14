@@ -11,6 +11,7 @@ class Todo
     }
 
     isDone = false;
+    isRevealed = false;
 
     toggleIsDone()
     {
