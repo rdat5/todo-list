@@ -11,9 +11,9 @@ console.log("Testing...");
 const userProjects = new UserProjects();
 userProjects.addProject(new Project("Default Project"));
 userProjects.projects[0].addTodo(new Todo("Make a todo list", 
-"Add a todo item to your project", 
-format(Date.now(), 'MM/dd/yyyy'), 
-"Urgent"));
+        "Add a todo item to your project", 
+        new Date(), 
+        "Urgent"));
 userProjects.projects[0].addTodo(new Todo());
 userProjects.projects[0].todos[0].isDone = true;
 

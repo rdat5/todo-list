@@ -1,5 +1,5 @@
 import './ui.css';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, parse } from 'date-fns';
 import { Todo } from './todo';
 import { Project } from './project';
 
@@ -60,6 +60,63 @@ class DomManager
         }
     }
 
+    generateEditForm(todo)
+    {
+        const editFormContainer = document.createElement('div');
+        editFormContainer.style.display = "grid";
+        editFormContainer.style.width = "100%";
+        editFormContainer.style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+        editFormContainer.style.gridTemplateRows = "1fr 1fr";
+
+        const editTitleInput = document.createElement('input');
+        editTitleInput.value = todo.title;
+        editFormContainer.appendChild(editTitleInput);
+
+        const editDescInput = document.createElement('input');
+        editDescInput.value = todo.desc;
+        editFormContainer.appendChild(editDescInput);
+
+        const editDateInput = document.createElement('input');
+        editDateInput.type = "date";
+        editDateInput.value = format(todo.dueDate, 'yyyy-MM-dd');
+        // console.log(format(todo.dueDate, 'yyyy-MM-dd'));
+        editFormContainer.appendChild(editDateInput);
+        
+        const priorities = ['Urgent', 'High', 'Normal', 'Low'];
+        const editPriorityInput = document.createElement('select');
+        for (let i = 0; i < priorities.length; i++)
+        {
+            var option = document.createElement('option');
+            option.value = priorities[i];
+            option.text = priorities[i];
+            editPriorityInput.appendChild(option);
+        }
+
+        editPriorityInput.value = todo.priority;
+        console.log(editPriorityInput.value);
+        editFormContainer.appendChild(editPriorityInput);
+
+        const saveEditBtn = this.generateElement('button', null, "Save");
+        saveEditBtn.style.gridColumn = "1 / 3";
+        saveEditBtn.addEventListener("click", () => {
+            todo.title = editTitleInput.value;
+            todo.desc = editDescInput.value;
+            todo.dueDate = parse(editDateInput.value, 'yyyy-MM-dd', new Date());
+            todo.priority = editPriorityInput.value;
+            this.renderTodos();
+        })
+        editFormContainer.appendChild(saveEditBtn);
+
+        const cancelEditBtn = this.generateElement('button', null, 'Cancel');
+        cancelEditBtn.style.gridColumn = "3 / 5";
+        cancelEditBtn.addEventListener("click", () => {
+            mainElem.removeChild(editFormContainer);
+        })
+        editFormContainer.appendChild(cancelEditBtn);
+
+        return editFormContainer;
+    }
+
     generateTodoCard(todo, id)
     {
         
@@ -76,7 +133,6 @@ class DomManager
         }
         cardContainer.addEventListener("click", () => {
             console.log("clicked");
-            // cardDesc.style.display = "block";
             todo.isRevealed = !todo.isRevealed;
             this.renderTodos();
         })
@@ -121,7 +177,8 @@ class DomManager
 
         // Todo due date
         const cardDue = document.createElement('p');
-        cardDue.textContent = todo.dueDate;
+        // cardDue.textContent = todo.dueDate;
+        cardDue.textContent = format(todo.dueDate, 'MM-dd-yyyy');
         cardContainer.appendChild(cardDue);
         
         // Todo priority
@@ -129,16 +186,30 @@ class DomManager
         cardPriority.textContent = todo.priority;
         cardContainer.appendChild(cardPriority);
 
-        // Todo delete button
-        const cardDelBtn = document.createElement('button');
-        cardDelBtn.textContent = "⌫";
-        cardDelBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            console.log("Delete!");
-            this.userProj.projects[this.currentProjectIndex].deleteTodo(id);
-            this.renderTodos();
-        })
-        cardContainer.appendChild(cardDelBtn);
+        if (todo.isRevealed)
+        {
+            // Todo edit button
+            const cardEditButton = this.generateElement('button', null, '✎');
+            cardEditButton.addEventListener("click", (event) => {
+                event.stopPropagation();
+                
+                const editForm = this.generateEditForm(todo);
+                cardContainer.parentNode.insertBefore(editForm, cardContainer.nextSibling);
+                cardEditButton.style.visibility = "hidden";
+            })
+            cardContainer.appendChild(cardEditButton);
+
+            // Todo delete button
+            const cardDelBtn = document.createElement('button');
+            cardDelBtn.textContent = "⌫";
+            cardDelBtn.addEventListener("click", (event) => {
+                event.stopPropagation();
+                console.log("Delete!");
+                this.userProj.projects[this.currentProjectIndex].deleteTodo(id);
+                this.renderTodos();
+            })
+            cardContainer.appendChild(cardDelBtn);
+        }
 
         return cardContainer;
     }
@@ -205,11 +276,15 @@ class DomManager
             let formDate;
             if (dateInput.value)
             {
-                formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy')
+                // formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy')
+                // formDate = parse(dateInput.value, 'yyyy-dd-mm', new Date());
+                // formDate = parse(dateInput.value, 'yyyy-mm-dd', new Date());
+                formDate = parse(dateInput.value, 'yyyy-MM-dd', new Date());
             }
             else
             {
-                formDate = format(Date.now(), 'MM/dd/yyyy');
+                // formDate = format(Date.now(), 'MM/dd/yyyy');
+                formDate = new Date();
             }
             let formPriority = priorityInput.options[priorityInput.selectedIndex].text;
 

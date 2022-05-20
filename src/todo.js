@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 
 class Todo
 {
-    constructor(title = "Task name", desc = "Task description", dueDate = format(new Date(2014, 1, 11), 'MM/dd/yyyy'), priority = "Urgent")
+    constructor(title = "Task name", desc = "Task description", dueDate = new Date(2002, 3, 1), priority = "Urgent")
     {
         this.title = title;
         this.desc = desc;
