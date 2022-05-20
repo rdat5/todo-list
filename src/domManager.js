@@ -79,7 +79,6 @@ class DomManager
         const editDateInput = document.createElement('input');
         editDateInput.type = "date";
         editDateInput.value = format(todo.dueDate, 'yyyy-MM-dd');
-        // console.log(format(todo.dueDate, 'yyyy-MM-dd'));
         editFormContainer.appendChild(editDateInput);
         
         const priorities = ['Urgent', 'High', 'Normal', 'Low'];
@@ -177,7 +176,6 @@ class DomManager
 
         // Todo due date
         const cardDue = document.createElement('p');
-        // cardDue.textContent = todo.dueDate;
         cardDue.textContent = format(todo.dueDate, 'MM-dd-yyyy');
         cardContainer.appendChild(cardDue);
         
@@ -276,14 +274,10 @@ class DomManager
             let formDate;
             if (dateInput.value)
             {
-                // formDate = format(parseISO(dateInput.value), 'MM/dd/yyyy')
-                // formDate = parse(dateInput.value, 'yyyy-dd-mm', new Date());
-                // formDate = parse(dateInput.value, 'yyyy-mm-dd', new Date());
                 formDate = parse(dateInput.value, 'yyyy-MM-dd', new Date());
             }
             else
             {
-                // formDate = format(Date.now(), 'MM/dd/yyyy');
                 formDate = new Date();
             }
             let formPriority = priorityInput.options[priorityInput.selectedIndex].text;
