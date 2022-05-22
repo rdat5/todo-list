@@ -100,7 +100,7 @@ class DomManager
         saveEditBtn.addEventListener("click", () => {
             todo.title = editTitleInput.value;
             todo.desc = editDescInput.value;
-            todo.dueDate = parse(editDateInput.value, 'yyyy-MM-dd', new Date());
+            todo.dueDate = parseISO(editDateInput.value, 'yyyy-MM-dd', new Date());
             todo.priority = editPriorityInput.value;
             this.renderTodos();
         })
@@ -274,7 +274,7 @@ class DomManager
             let formDate;
             if (dateInput.value)
             {
-                formDate = parse(dateInput.value, 'yyyy-MM-dd', new Date());
+                formDate = parseISO(dateInput.value, 'yyyy-MM-dd', new Date());
             }
             else
             {
