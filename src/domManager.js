@@ -1,5 +1,5 @@
 import './ui.css';
-import { format, parseISO, parse } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { Todo } from './todo';
 import { Project } from './project';
 
@@ -326,6 +326,10 @@ class DomManager
         projDelBtn.addEventListener("click", () => {
             console.log("deleting project!" + id);
             this.userProj.deleteProject(id);
+            if (this.currentProjectIndex > 0)
+            {
+                this.currentProjectIndex -= 1;
+            }
             this.renderPage();
         })
         projectContainer.appendChild(projDelBtn);
