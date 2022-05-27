@@ -2,6 +2,7 @@ import './ui.css';
 import { format, parseISO } from 'date-fns';
 import { Todo } from './todo';
 import { Project } from './project';
+import { DataManager } from './dataManager';
 
 const pageWrap = document.querySelector('.page-wrap');
 const sidebarElem = document.createElement('div');
@@ -103,6 +104,9 @@ class DomManager
             todo.dueDate = parseISO(editDateInput.value, 'yyyy-MM-dd', new Date());
             todo.priority = editPriorityInput.value;
             this.renderTodos();
+
+            // Save data
+            DataManager.saveData(this.userProj);
         })
         editFormContainer.appendChild(saveEditBtn);
 
@@ -285,6 +289,9 @@ class DomManager
             this.userProj.projects[this.currentProjectIndex].addTodo(new Todo(formTitle, formDesc, formDate, formPriority));
 
             this.renderTodos();
+
+            // Save data
+            DataManager.saveData(this.userProj);
         })
         newTodoForm.appendChild(saveTodoBtn);
 
@@ -370,6 +377,9 @@ class DomManager
 
             this.userProj.addProject(new Project(newName));
             this.renderProjects();
+
+            // Save data
+            DataManager.saveData(this.userProj);
         })
         saveCancelContainer.appendChild(saveNewProj);
 
