@@ -47,31 +47,6 @@ function createDefaultProject()
         userProjects.projects[0].todos[0].isDone = true;
 }
 
-function loadData()
-{
-        let parsedData = JSON.parse(localStorage.getItem('user-project'));
-
-        let loadedUserData = new UserProjects();
-
-        for (let i = 0; i < parsedData.projects.length; i++)
-        {
-                loadedUserData.addProject(new Project(parsedData.projects[i].name))
-
-                for (let j = 0; j < parsedData.projects[i].todos.length; j++)
-                {
-                        let todoTitle = parsedData.projects[i].todos[j].title;
-                        let todoDesc = parsedData.projects[i].todos[j].desc;
-                        let todoDue = parseISO(parsedData.projects[i].todos[j].dueDate, 'yyyy-MM-dd', new Date());
-                        let todoPriority = parsedData.projects[i].todos[j].priority;
-                        let todoIsDone = parsedData.projects[i].todos[j].isDone;
-
-                        loadedUserData.projects[i].addTodo(new Todo(todoTitle, todoDesc, todoDue, todoPriority));
-                        loadedUserData.projects[i].todos[j].isDone = todoIsDone;
-                }
-        }
-        return loadedUserData;
-}
-
 if (storageAvailable('localStorage'))
 {
         console.log("Storage is available");
@@ -79,7 +54,7 @@ if (storageAvailable('localStorage'))
         if (localStorage.getItem('user-project'))
         {
                 console.log("Data available, now loading...");
-                userProjects = loadData();
+                userProjects = DataManager.loadData();
         }
         else
         {
