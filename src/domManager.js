@@ -96,7 +96,7 @@ class DomManager
         console.log(editPriorityInput.value);
         editFormContainer.appendChild(editPriorityInput);
 
-        const saveEditBtn = this.generateElement('button', null, "Save");
+        const saveEditBtn = this.generateElement('button', "save-button", "Save");
         saveEditBtn.style.gridColumn = "1 / 3";
         saveEditBtn.addEventListener("click", () => {
             todo.title = editTitleInput.value;
@@ -110,7 +110,7 @@ class DomManager
         })
         editFormContainer.appendChild(saveEditBtn);
 
-        const cancelEditBtn = this.generateElement('button', null, 'Cancel');
+        const cancelEditBtn = this.generateElement('button', "cancel-button", 'Cancel');
         cancelEditBtn.style.gridColumn = "3 / 5";
         cancelEditBtn.addEventListener("click", () => {
             mainElem.removeChild(editFormContainer);
@@ -268,7 +268,7 @@ class DomManager
         }
         newTodoForm.appendChild(priorityInput);
 
-        const saveTodoBtn = this.generateElement('button', null, 'Save Todo');
+        const saveTodoBtn = this.generateElement('button', "save-button", 'Save Todo');
         saveTodoBtn.addEventListener("click", (event) => {
             mainElem.removeChild(newTodoForm);    
             mainElem.appendChild(this.generateNewTodoButton());
@@ -295,7 +295,7 @@ class DomManager
         })
         newTodoForm.appendChild(saveTodoBtn);
 
-        const cancelTodoBtn = this.generateElement('button', null, 'Cancel');
+        const cancelTodoBtn = this.generateElement('button', "cancel-button", 'Cancel');
         cancelTodoBtn.addEventListener("click", () => {
             mainElem.removeChild(newTodoForm);    
             mainElem.appendChild(this.generateNewTodoButton());
@@ -310,6 +310,7 @@ class DomManager
     {
         const addNewTodoBtn = document.createElement('button');
         addNewTodoBtn.textContent = "[+] Add New Todo";
+        addNewTodoBtn.classList.add("addnewtodo-button");
         addNewTodoBtn.addEventListener("click", () =>
         {
             mainElem.removeChild(addNewTodoBtn);
@@ -363,7 +364,7 @@ class DomManager
         saveCancelContainer.style.display = "grid";
         saveCancelContainer.style.gridTemplateColumns = "1fr 1fr";
 
-        const saveNewProj = this.generateElement('button', null, 'Save');
+        const saveNewProj = this.generateElement('button', "save-button", 'Save');
         saveNewProj.addEventListener("click", () => {
             let newName;
             if (newProjName.value)
@@ -383,7 +384,7 @@ class DomManager
         })
         saveCancelContainer.appendChild(saveNewProj);
 
-        const cancelNewProj = this.generateElement('button', null, 'Cancel');
+        const cancelNewProj = this.generateElement('button', "cancel-button", 'Cancel');
         cancelNewProj.addEventListener("click", () => {
             this.renderProjects();
             console.log("canceling project...");
@@ -405,6 +406,7 @@ class DomManager
         }
         const addNew = document.createElement('button');
         addNew.textContent = "Add New Project";
+        addNew.classList.add("addnew-button");
         addNew.addEventListener("click", () => {
             console.log("Adding new project!");
             sidebarElem.removeChild(addNew);
