@@ -154,6 +154,7 @@ class DomManager
         doneButton.addEventListener("click", (event) =>{
             event.stopPropagation();
             this.userProj.projects[this.currentProjectIndex].todos[id].toggleIsDone();
+            DataManager.saveData(this.userProj);
             this.renderTodos();
         });
         cardContainer.appendChild(doneButton);
